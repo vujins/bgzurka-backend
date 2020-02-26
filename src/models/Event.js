@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 const slug = require('slugs');
 
 const eventSchema = new mongoose.Schema({
@@ -11,6 +12,10 @@ const eventSchema = new mongoose.Schema({
   created: {
     type: Date,
     default: Date.now
+  },
+  date: {
+    type: Date,
+    required: 'Please enter an event date!'
   },
   tags: [String],
   description: {
@@ -32,6 +37,10 @@ const eventSchema = new mongoose.Schema({
     }
   }
 });
+
+eventSchema.index({
+  location: '2dsphere'
+})
 
 eventSchema.pre('save', function(next) {
   if (!this.isModified('name')) {

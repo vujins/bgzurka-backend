@@ -7,7 +7,8 @@ require('dotenv').config();
 mongoose
   .connect(process.env.DB_URL, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
   })
   .then(() => {
     console.log(`💚💚💚 -> ${process.env.DB_URL}`);
@@ -19,6 +20,7 @@ mongoose.connection.on('error', err => {
 
 // import models
 require('./models/Event');
+require('./models/User');
 
 // start server
 const app = require('./app');
