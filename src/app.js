@@ -1,8 +1,12 @@
 const express = require('express');
 const routes = require('./routes/index');
 const errorHandlers = require('./handlers/errorHandlers');
+const cors = require('cors');
 
 const app = express();
+
+// enable all cors
+app.use(cors());
 
 // bodyparser
 app.use(express.json());

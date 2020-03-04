@@ -3,6 +3,8 @@ const Event = mongoose.model('Event');
 
 exports.createEvent = async (req, res) => {
   const event = await new Event(req.body).save();
+  console.log(event);
+  
   res.send(event);
 };
 
