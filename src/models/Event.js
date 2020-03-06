@@ -11,7 +11,7 @@ const eventSchema = new mongoose.Schema({
   slug: String,
   created: {
     type: Date,
-    default: Date.now
+    default: Date.now()
   },
   date: {
     type: Date,
@@ -27,20 +27,31 @@ const eventSchema = new mongoose.Schema({
       type: String,
       defualt: 'Point'
     },
-    coordinates: [{
-      type: Number,
-      required: 'Coordinates required!'
-    }],
+    coordinates: [
+      {
+        type: Number,
+        required: 'Coordinates required!'
+      }
+    ],
     address: {
       type: String,
       required: 'Address required!'
     }
-  }
+  },
+  rating: {
+    type: Number,
+    default: 0
+  },
+  ratingCount: {
+    type: Number,
+    default: 0
+  },
+  img: String
 });
 
 eventSchema.index({
   location: '2dsphere'
-})
+});
 
 eventSchema.pre('save', function(next) {
   if (!this.isModified('name')) {
