@@ -11,7 +11,7 @@ mongoose
     useCreateIndex: true
   })
   .then(() => {
-    console.log(`💚💚💚 -> ${process.env.DB_URL}`);
+    console.log(`❤️❤️❤️ mongodb -> ${process.env.DB_URL}`);
   });
 mongoose.Promise = global.Promise;
 mongoose.connection.on('error', err => {

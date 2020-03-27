@@ -1,12 +1,17 @@
 const express = require('express');
 const routes = require('./routes/index');
 const errorHandlers = require('./handlers/errorHandlers');
+
+// load .env variables
 const cors = require('cors');
 
 const app = express();
 
-// enable all cors
-app.use(cors());
+// enable cors
+const corsoptions = {
+  origin: 'http://localhost:3000'
+};
+app.use(cors(corsoptions));
 
 // bodyparser
 app.use(express.json());
